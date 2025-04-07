@@ -58,7 +58,7 @@ categories = {
             "Try beeswax wrap": {
                 "impact": "Avoids ~500 sq. ft. of plastic wrap waste yearly.",
                 "infographic": "That’s enough wrap to cover your entire kitchen table every week 🍯",
-                "sdgs": ["12", "14"]
+                "sdgs": ["12 - Responsible Consumption", "14 - Life Below Water"]
             }
         }
     },
@@ -67,12 +67,12 @@ categories = {
             "Shop secondhand": {
                 "impact": "Reduces water use — ~2,000 gallons saved per outfit.",
                 "infographic": "That’s the same as 30 showers 🚿",
-                "sdgs": ["12", "13"]
+                "sdgs": ["12 - Responsible Consumption", "13 - Climate Action"]
             },
             "Choose natural fibers": {
                 "impact": "Helps clothes biodegrade vs. releasing microplastics.",
                 "infographic": "Less synthetic fiber = less microplastic in the ocean 🌊",
-                "sdgs": ["12", "14"]
+                "sdgs": ["12 - Responsible Consumption", "14 - Life Below Water"]
             }
         }
     },
@@ -81,12 +81,12 @@ categories = {
             "Bring a cloth tote bag": {
                 "impact": "Saves ~1,000 plastic bags per person yearly.",
                 "infographic": "That’s like skipping 20 full trash bags worth of plastic 🛍️",
-                "sdgs": ["12", "14"]
+                "sdgs": ["12 - Responsible Consumption", "14 - Life Below Water"]
             },
             "Use cloth towels": {
                 "impact": "Reduces ~3,000 paper towels/year and saves trees.",
                 "infographic": "Enough to save one small tree 🌳",
-                "sdgs": ["12", "15"]
+                "sdgs": ["12 - Responsible Consumption", "15 - Life on Land"]
             }
         }
     },
@@ -95,12 +95,12 @@ categories = {
             "Use shampoo bars": {
                 "impact": "No plastic packaging and less water used.",
                 "infographic": "One bar = 3 bottles saved from the landfill 🧼",
-                "sdgs": ["12", "6 - Clean Water"]
+                "sdgs": ["12 - Responsible Consumption", "6 - Clean Water"]
             },
             "DIY vinegar cleaner": {
                 "impact": "Avoids harsh chemicals in water systems.",
                 "infographic": "Just vinegar + citrus peels = sparkling and safe 🍋",
-                "sdgs": ["6", "12"]
+                "sdgs": ["6", "12 - Responsible Consumption"]
             }
         }
     },
@@ -109,12 +109,12 @@ categories = {
             "Choose reef-safe sunscreen": {
                 "impact": "Protects coral reefs from bleaching toxins.",
                 "infographic": "Sunscreen without oxybenzone = happier fish 🐠",
-                "sdgs": ["14"]
+                "sdgs": ["14 - Life Below Water"]
             },
             "Avoid microbeads in products": {
                 "impact": "Prevents plastic particles harming marine life.",
                 "infographic": "One tube of scrub can contain 300,000 microbeads 🐚",
-                "sdgs": ["12", "14"]
+                "sdgs": ["12 - Responsible Consumption", "14 - Life Below Water"]
             }
         }
     },
@@ -123,12 +123,12 @@ categories = {
             "Grow your own herbs": {
                 "impact": "Reduces packaging and emissions from store-bought herbs.",
                 "infographic": "Fresh herbs on hand = no plastic clamshells 🌿",
-                "sdgs": ["11 - Sustainable Cities", "13"]
+                "sdgs": ["11 - Sustainable Cities", "13 - Climate Action"]
             },
             "Start composting": {
                 "impact": "Diverts food waste & lowers methane emissions.",
                 "infographic": "Every 10 lbs composted = 2.5 lbs less methane ☁️",
-                "sdgs": ["12", "13", "15"]
+                "sdgs": ["12 - Responsible Consumption", "13 - Climate Action", "15 - Life on Land"]
             }
         }
     }
@@ -149,7 +149,7 @@ if selected_category:
             <div class='impact-box'>
                 <h4>🌍 Your Impact:</h4>
                 <p>{swap_info['impact']}</p>
-                <h5>📊 Infographic-Style Reminder:</h5>
+                <h5>📊 Understanding Your Impact:</h5>
                 <p><em>{swap_info['infographic']}</em></p>
                 <h5>✅ Supports these UN Goals:</h5>
                 {''.join([f"<span class='sdg-tag'>{sdg}</span>" for sdg in swap_info['sdgs']])}
