@@ -158,4 +158,4 @@ if selected_category:
 
 # ---------- FOOTER ----------
 st.markdown("---")
-st.markdown("Created with 💚 by The Eco Connection")
+st.markdown("Created with 💚 by Maressa Benz - The Eco Connection")
