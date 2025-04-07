@@ -13,7 +13,7 @@ streamlit run eco_swaps_dashboard.py
 ## 🌍 Deploy to Streamlit Cloud
 
 1. Push this folder to a GitHub repository
-2. Go to [https://streamlit.io/cloud](https://streamlit.io/cloud)
+2. Go to https://streamlit.io/cloud
 3. Connect your GitHub and deploy the app!
 
 Created with 💚 by The Eco Connection
