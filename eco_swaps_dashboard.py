@@ -109,7 +109,7 @@ if selected:
                 <h4>🌍 Your Impact:</h4>
                 <p>{swap_info['impact']}</p>
                 <h5>✅ Supports these UN Goals:</h5>
-                {''.join([f"<span class='sdg-tag'>{sdg}</span>' for sdg in swap_info['sdgs']])}
+{''.join([f"<span class='sdg-tag'>{sdg}</span>" for sdg in swap_info['sdgs']])}
             </div>
         """, unsafe_allow_html=True)
 
