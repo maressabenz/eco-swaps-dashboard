@@ -7,7 +7,7 @@ This is a Streamlit-based dashboard that lets users explore simple eco-friendly 
 
 ```bash
 pip install -r requirements.txt
-streamlit run eco_swaps_dashboard.py
+streamlit run eco_swaps_dashboard_v2.py
 ```
 
 ## 🌍 Deploy to Streamlit Cloud
