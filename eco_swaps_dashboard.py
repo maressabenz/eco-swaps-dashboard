@@ -120,8 +120,33 @@ swaps = {
     }
 }
 
-# ---------- USER INPUT ----------
-category = st.selectbox("Choose a sustainability category:", list(swaps.keys()))
+# ---------- USER INPUT USING BUTTONS INSTEAD OF DROPDOWNS ----------
+st.markdown("## 🌿 Choose a Category")
+
+selected_category = None
+cols = st.columns(3)
+categories = list(swaps.keys())
+
+for i, category in enumerate(categories):
+    with cols[i % 3]:
+        if st.button(f"{category_icons[category]} {category}"):
+            selected_category = category
+
+if selected_category:
+    st.markdown(f"## {category_icons[selected_category]} {selected_category}")
+    swap = st.selectbox("Now pick an eco-friendly swap:", list(swaps[selected_category].keys()))
+
+    if swap:
+        info = swaps[selected_category][swap]
+        st.markdown(f"""
+            <div class="impact-box">
+                <h4>🌍 Your Impact:</h4>
+                <p>{info['impact']}</p>
+                <h5>✅ Supports these UN Goals:</h5>
+                {''.join([f'<span class="sdg-tag">{sdg}</span>' for sdg in info['sdgs']])}
+            </div>
+        """, unsafe_allow_html=True)
+
 if category:
     st.markdown(f"## {category_icons[category]} {category}")
     swap = st.selectbox("Now pick an eco-friendly swap:", list(swaps[category].keys()))
