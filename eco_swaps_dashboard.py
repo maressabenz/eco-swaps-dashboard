@@ -17,10 +17,13 @@ colors = {
 # ---------- STYLING ----------
 st.markdown(f"""
     <style>
-    body {{
+    html, body, [class*="css"]  {{
         background-color: {colors['background']};
-        font-family: 'Georgia', serif;
+        font-family: 'Poppins Light', sans-serif;
         color: {colors['forest_green']};
+    }}
+    h1, h2, h3, h4, h5, h6 {{
+        font-family: 'Fahkwang', sans-serif;
     }}
     .impact-box {{
         background-color: {colors['soft_sage']};
@@ -41,7 +44,7 @@ st.markdown(f"""
 
 # ---------- HEADER ----------
 st.title("🌿 Eco-Friendly Swaps Dashboard")
-st.markdown("Choose a category to explore simple, sustainable swaps and track your impact.✨")
+st.markdown("Choose a category to explore simple, sustainable swaps and visualize your impact with illustrated insights.✨")
 
 # ---------- CATEGORIES + ICONS ----------
 categories = {
@@ -50,11 +53,13 @@ categories = {
         "swaps": {
             "Use a reusable bottle": {
                 "impact": "Prevents ~1,460 bottles from entering landfills in 4 years.",
-                "sdgs": ["12 - Responsible Consumption", "13 - Climate Action", "14 - Life Below Water"]
+                "sdgs": ["12 - Responsible Consumption", "13 - Climate Action", "14 - Life Below Water"],
+                "visual": "icons/bottle_impact.png"
             },
             "Try beeswax wrap": {
                 "impact": "Avoids ~500 sq. ft. of plastic wrap waste yearly.",
-                "sdgs": ["12", "14"]
+                "sdgs": ["12", "14"],
+                "visual": "icons/beeswax_impact.png"
             }
         }
     },
@@ -63,74 +68,23 @@ categories = {
         "swaps": {
             "Shop secondhand": {
                 "impact": "Reduces water use & emissions — ~2,000 gallons saved per outfit.",
-                "sdgs": ["12", "13"]
+                "sdgs": ["12", "13"],
+                "visual": "icons/secondhand_impact.png"
             },
             "Choose natural fibers": {
                 "impact": "Helps clothes biodegrade vs. releasing microplastics.",
-                "sdgs": ["12", "14"]
-            }
-        }
-    },
-    "Reusable Alternatives": {
-        "icon": "icons/reusables.png",
-        "swaps": {
-            "Bring a cloth tote bag": {
-                "impact": "Saves ~1,000 plastic bags per person yearly.",
-                "sdgs": ["12", "14"]
-            },
-            "Use cloth towels": {
-                "impact": "Reduces ~3,000 paper towels/year and saves trees.",
-                "sdgs": ["12", "15"]
-            }
-        }
-    },
-    "Eco-Friendly Products": {
-        "icon": "icons/products.png",
-        "swaps": {
-            "Use shampoo bars": {
-                "impact": "No plastic packaging, less water used.",
-                "sdgs": ["12", "6 - Clean Water"]
-            },
-            "DIY vinegar cleaner": {
-                "impact": "Avoids harsh chemicals in water systems.",
-                "sdgs": ["6", "12"]
-            }
-        }
-    },
-    "Wildlife & Ecosystems": {
-        "icon": "icons/wildlife.png",
-        "swaps": {
-            "Choose reef-safe sunscreen": {
-                "impact": "Protects coral reefs from bleaching toxins.",
-                "sdgs": ["14"]
-            },
-            "Avoid microbeads in products": {
-                "impact": "Prevents synthetic particles harming marine life.",
-                "sdgs": ["12", "14"]
-            }
-        }
-    },
-    "Container Gardening": {
-        "icon": "icons/gardening.png",
-        "swaps": {
-            "Grow your own herbs": {
-                "impact": "Reduces emissions & packaging from store-bought herbs.",
-                "sdgs": ["11 - Sustainable Cities", "13"]
-            },
-            "Start composting": {
-                "impact": "Diverts food waste & lowers methane emissions.",
-                "sdgs": ["12", "13", "15"]
+                "sdgs": ["12", "14"],
+                "visual": "icons/fibers_impact.png"
             }
         }
     }
+    # Add other categories and swaps here
 }
 
 if "selected_category" not in st.session_state:
     st.session_state.selected_category = None
-if "selected_swaps" not in st.session_state:
-    st.session_state.selected_swaps = []
 
-# ---------- DISPLAY CATEGORY ICONS ----------
+# ---------- CATEGORY SELECTION ----------
 st.markdown("## 🌿 Choose a Category")
 cat_cols = st.columns(3)
 for i, (cat_name, cat_data) in enumerate(categories.items()):
@@ -140,30 +94,24 @@ for i, (cat_name, cat_data) in enumerate(categories.items()):
 
 selected = st.session_state.selected_category
 
-# ---------- DISPLAY SWAPS ----------
+# ---------- SWAP DROPDOWN + IMPACT VISUAL ----------
 if selected:
     st.image(categories[selected]["icon"], width=80)
     st.subheader(f"{selected}")
-    for swap_text, swap_info in categories[selected]["swaps"].items():
-        if st.button(swap_text, key=swap_text):
-            if swap_text not in st.session_state.selected_swaps:
-                st.session_state.selected_swaps.append(swap_text)
-            st.markdown(f"""
-                <div class='impact-box'>
-                    <h4>🌍 Your Impact:</h4>
-                    <p>{swap_info['impact']}</p>
-                    <h5>✅ Supports these UN Goals:</h5>
-                    {''.join([f"<span class='sdg-tag'>{sdg}</span>" for sdg in swap_info['sdgs']])}
-                </div>
-            """, unsafe_allow_html=True)
+    swap_options = list(categories[selected]["swaps"].keys())
+    chosen_swap = st.selectbox("Pick a sustainable swap:", swap_options, key=f"select_{selected}")
 
-# ---------- TRACKER ----------
-if st.session_state.selected_swaps:
-    st.markdown("## 🌟 My Impact So Far")
-    st.markdown("You're already making changes that matter. Here's what you've committed to:")
-    for swap in st.session_state.selected_swaps:
-        st.markdown(f"✅ {swap}")
-    st.success(f"Total swaps: {len(st.session_state.selected_swaps)}")
+    if chosen_swap:
+        swap_info = categories[selected]["swaps"][chosen_swap]
+        st.image(swap_info["visual"], width=200)
+        st.markdown(f"""
+            <div class='impact-box'>
+                <h4>🌍 Your Impact:</h4>
+                <p>{swap_info['impact']}</p>
+                <h5>✅ Supports these UN Goals:</h5>
+                {''.join([f"<span class='sdg-tag'>{sdg}</span>' for sdg in swap_info['sdgs']])}
+            </div>
+        """, unsafe_allow_html=True)
 
 # ---------- FOOTER ----------
 st.markdown("---")
