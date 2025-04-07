@@ -147,15 +147,17 @@ if selected_category:
         swap_info = categories[selected_category]["swaps"][chosen_swap]
         st.markdown(f"""
             <div class='impact-box'>
-                <h4>🌍 Your Impact:</h4>
+                <h4>🌍 How This Helps our Planet:</h4>
                 <p>{swap_info['impact']}</p>
                 <h5>📊 Understanding Your Impact:</h5>
                 <p><em>{swap_info['infographic']}</em></p>
                 <h5>✅ Supports these UN Goals:</h5>
               {''.join([
-    f"<a href='https://sdgs.un.org/goals/goal{sdg.split(' ')[0]}' target='_blank'><span class='sdg-tag'>{sdg.split(' ')[0]}</span></a>"
+   {''.join([
+    f"<a href='https://sdgs.un.org/goals/goal{sdg.split(' ')[0]}' target='_blank'><span class='sdg-tag'>{sdg}</span></a>"
     for sdg in swap_info['sdgs']
 ])}
+
 
             </div>
         """, unsafe_allow_html=True)
