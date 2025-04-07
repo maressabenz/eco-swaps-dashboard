@@ -152,10 +152,14 @@ if selected_category:
                 <h5>📊 Understanding Your Impact:</h5>
                 <p><em>{swap_info['infographic']}</em></p>
                 <h5>✅ Supports these UN Goals:</h5>
-                {''.join([f"<span class='sdg-tag'>{sdg}</span>" for sdg in swap_info['sdgs']])}
+              {''.join([
+    f"<a href='https://sdgs.un.org/goals/goal{sdg.split(' ')[0]}' target='_blank'><span class='sdg-tag'>{sdg.split(' ')[0]}</span></a>"
+    for sdg in swap_info['sdgs']
+])}
+
             </div>
         """, unsafe_allow_html=True)
 
 # ---------- FOOTER ----------
 st.markdown("---")
-st.markdown("Created with 💚 by The Eco Connection")
+st.markdown("Created with 💚 by Maressa Benz - The Eco Connection")
