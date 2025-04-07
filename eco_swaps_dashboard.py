@@ -38,6 +38,10 @@ st.markdown(f"""
         border-radius: 5px;
         font-size: 0.8em;
         margin-right: 5px;
+        text-decoration: none;
+    }}
+    a {{
+        text-decoration: none;
     }}
     </style>
 """, unsafe_allow_html=True)
@@ -100,7 +104,7 @@ categories = {
             "DIY vinegar cleaner": {
                 "impact": "Avoids harsh chemicals in water systems.",
                 "infographic": "Just vinegar + citrus peels = sparkling and safe 🍋",
-                "sdgs": ["6", "12 - Responsible Consumption"]
+                "sdgs": ["6 - Clean Water", "12 - Responsible Consumption"]
             }
         }
     },
@@ -147,18 +151,15 @@ if selected_category:
         swap_info = categories[selected_category]["swaps"][chosen_swap]
         st.markdown(f"""
             <div class='impact-box'>
-                <h4>🌍 How This Helps our Planet:</h4>
+                <h4>🌍 Your Impact:</h4>
                 <p>{swap_info['impact']}</p>
                 <h5>📊 Understanding Your Impact:</h5>
                 <p><em>{swap_info['infographic']}</em></p>
                 <h5>✅ Supports these UN Goals:</h5>
-              {''.join([
-   {''.join([
-    f"<a href='https://sdgs.un.org/goals/goal{sdg.split(' ')[0]}' target='_blank'><span class='sdg-tag'>{sdg}</span></a>"
-    for sdg in swap_info['sdgs']
-])}
-
-
+                {''.join([
+                    f"<a href='https://sdgs.un.org/goals/goal{sdg.split(' ')[0]}' target='_blank'><span class='sdg-tag'>{sdg}</span></a>"
+                    for sdg in swap_info['sdgs']
+                ])}
             </div>
         """, unsafe_allow_html=True)
 
