@@ -134,7 +134,12 @@ for i, category in enumerate(categories):
 
 if selected_category:
     st.markdown(f"## {category_icons[selected_category]} {selected_category}")
-    swap = st.selectbox("Now pick an eco-friendly swap:", list(swaps[selected_category].keys()))
+    
+    swap = st.selectbox(
+        "Now pick an eco-friendly swap:",
+        list(swaps[selected_category].keys()),
+        key=f"swap_select_{selected_category}"
+    )
 
     if swap:
         info = swaps[selected_category][swap]
@@ -147,6 +152,8 @@ if selected_category:
             </div>
         """, unsafe_allow_html=True)
 
+
+
 # ---------- FOOTER ----------
 st.markdown("---")
-st.markdown("Created with 💚 by The Eco Connection")
+st.markdown("Created with lots of 💚 by Maressa Benz - The Eco Connection")
