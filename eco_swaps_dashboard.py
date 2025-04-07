@@ -147,21 +147,6 @@ if selected_category:
             </div>
         """, unsafe_allow_html=True)
 
-if category:
-    st.markdown(f"## {category_icons[category]} {category}")
-    swap = st.selectbox("Now pick an eco-friendly swap:", list(swaps[category].keys()))
-
-    if swap:
-        info = swaps[category][swap]
-        st.markdown(f"""
-            <div class="impact-box">
-                <h4>🌍 Your Impact:</h4>
-                <p>{info['impact']}</p>
-                <h5>✅ Supports these UN Goals:</h5>
-                {''.join([f'<span class="sdg-tag">{sdg}</span>' for sdg in info['sdgs']])}
-            </div>
-        """, unsafe_allow_html=True)
-
 # ---------- FOOTER ----------
 st.markdown("---")
 st.markdown("Created with 💚 by The Eco Connection")
